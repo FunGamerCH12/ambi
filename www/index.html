@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#111111">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<title>Ambite</title>
+<style>
+:root{--tx:#f4f4f5;--mut:rgba(244,244,245,.6);--g:rgba(255,255,255,.07);--gb:rgba(255,255,255,.15);--ac:#f4f4f5;--acx:#111;--sh:rgba(0,0,0,.45);--b1:#0a0a0b;--b2:#17171a;--b3:#0d0d0f;--gl:rgba(255,255,255,.1);color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--tx:#141414;--mut:rgba(20,20,20,.58);--g:rgba(255,255,255,.55);--gb:rgba(0,0,0,.1);--ac:#141414;--acx:#fff;--sh:rgba(0,0,0,.14);--b1:#e8e8ea;--b2:#f7f7f8;--b3:#dcdcdf;--gl:rgba(255,255,255,.7);color-scheme:light}}
+:root[data-theme="light"]{--tx:#141414;--mut:rgba(20,20,20,.58);--g:rgba(255,255,255,.55);--gb:rgba(0,0,0,.1);--ac:#141414;--acx:#fff;--sh:rgba(0,0,0,.14);--b1:#e8e8ea;--b2:#f7f7f8;--b3:#dcdcdf;--gl:rgba(255,255,255,.7);color-scheme:light}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;min-height:100vh;color:var(--tx);font:16px/1.45 -apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,"Segoe UI",Roboto,sans-serif;background:linear-gradient(160deg,var(--b1),var(--b2) 55%,var(--b3)) fixed}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(50% 35% at 18% 6%,var(--gl),transparent 70%),radial-gradient(45% 30% at 92% 50%,var(--gl),transparent 70%)}
+main{max-width:480px;margin:0 auto;padding:14px 16px 120px;animation:in .3s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.g,.seg button,.chips button,.rb2,nav,.sh{-webkit-backdrop-filter:blur(24px) saturate(150%);backdrop-filter:blur(24px) saturate(150%)}
+.g{background:var(--g);border:1px solid var(--gb);border-radius:22px;box-shadow:0 8px 28px var(--sh),inset 0 1px 0 var(--gb)}
+.c1{padding:14px 16px;margin-bottom:12px}
+button{font:inherit;color:inherit;cursor:pointer;-webkit-appearance:none}
+.hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.tt{display:flex;align-items:center;gap:10px}.tt .i{width:28px;height:28px}
+h1,.big,.gr b{font-family:"New York",Georgia,"Times New Roman",serif;font-weight:500}
+h1{font-size:1.6rem;margin:0;letter-spacing:.2px}h3{margin:18px 2px 8px;font-size:.8rem;letter-spacing:1.2px;text-transform:uppercase;color:var(--mut);font-weight:600}
+.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.gr{font-size:1.5rem;margin:6px 0 4px;line-height:1.2}.gr b{font-size:2.2rem}
+.mut,small{color:var(--mut)}small{display:block}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.row2{display:flex;gap:10px;margin-top:12px}.row2 .cta{flex:1;margin:0}
+.c{text-align:center}
+.bar{height:6px;border-radius:9px;background:var(--gb);margin:10px 0 4px;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:9px;background:var(--ac)}
+.sc{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:14px 0}
+.sc .g{padding:12px 2px;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:.66rem;color:var(--tx)}
+.play{width:46px;height:46px;border-radius:50%;border:0;background:var(--ac);color:var(--acx);display:grid;place-items:center;box-shadow:0 6px 16px var(--sh)}
+.play .i{width:20px;height:20px}.big2{width:68px;height:68px;margin:6px auto 16px}
+.rb2{width:38px;height:38px;border-radius:50%;border:1px solid var(--gb);background:var(--g);display:grid;place-items:center}
+.seg,.chips{display:flex;gap:8px;margin-bottom:14px}
+.seg button,.chips button{flex:1;padding:9px 6px;border-radius:999px;border:1px solid var(--gb);background:var(--g)}
+.seg .on,.chips .on{background:var(--ac);color:var(--acx);border-color:transparent;font-weight:600}
+.chips{overflow-x:auto}.chips button{flex:none;padding:9px 16px}
+.cta{display:block;width:100%;padding:14px;border:0;border-radius:16px;font-weight:600;background:var(--ac);color:var(--acx);text-align:center;text-decoration:none;margin-top:8px;cursor:pointer}
+.cta.alt{background:var(--g);color:var(--tx);border:1px solid var(--gb)}
+.nv{background:none;border:0;font-size:1.6rem;padding:0 8px}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px 0;text-align:center;margin-top:10px}
+.cal b{font-size:.76rem;color:var(--mut);font-weight:500}
+.d{width:38px;height:38px;margin:0 auto;border-radius:50%;border:0;background:none;position:relative;font-size:1rem}
+.d.t{box-shadow:inset 0 0 0 1.5px var(--tx)}.d.s{background:var(--ac);color:var(--acx);font-weight:700}
+.d.h::after{content:"";position:absolute;bottom:3px;left:50%;width:5px;height:5px;margin-left:-2.5px;border-radius:50%;background:currentColor}
+.ag{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--gb)}
+.ag:last-child{border:0}.ag i{width:8px;height:8px;border-radius:50%;flex:none;background:var(--ac)}.ag span{flex:1}.ag small{display:inline}
+.dn{text-decoration:line-through;opacity:.55}
+.tk{display:flex;align-items:center;gap:12px;padding:12px;margin-bottom:10px}
+.fr{width:100%;text-align:left;color:var(--tx)}
+.ti,.th{width:42px;height:42px;border-radius:12px;flex:none;border:1px solid var(--gb)}
+.ti{display:grid;place-items:center;font-weight:700;font-size:.78rem;background:var(--gb);color:var(--tx)}
+.th{object-fit:cover}
+.tx{flex:1;min-width:0}.tx b{display:block;overflow-wrap:anywhere}
+.pill{border:1px solid var(--gb);border-radius:999px;padding:5px 12px;font-size:.78rem;background:var(--gb);color:var(--tx)}
+.pill.ok{background:var(--ac);color:var(--acx);border-color:transparent}.pill.od{border-color:var(--tx)}
+.xx{background:none;border:0;font-size:1.4rem;color:var(--mut);padding:0 2px}
+.ringw{position:relative;width:240px;height:240px;margin:10px auto 14px}
+.ringw svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ringw circle{fill:none;stroke-width:8;stroke-linecap:round}
+.rb{stroke:var(--gb)}.rf{stroke:var(--ac);stroke-dasharray:565.5;transition:stroke-dashoffset .3s linear}
+.ctr{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.big{font-size:3.4rem;font-variant-numeric:tabular-nums}
+.qt{text-align:center;font-style:italic}
+.opt{display:block;width:100%;text-align:left;margin-top:8px;padding:11px 12px;border-radius:14px;border:1.5px solid var(--gb);background:var(--g)}
+.opt.ok{border-color:var(--tx);background:var(--gb)}.opt.no{border-style:dashed;opacity:.65}
+.opt.ok::after{content:"✓";float:right}.opt.no::after{content:"✕";float:right}
+.pr{display:flex;align-items:center;gap:10px;margin:8px 0}.pr span{width:88px}.pr .bar{flex:1;margin:0}.pr b{width:40px;text-align:right}
+.st{display:flex;align-items:center;gap:18px}.st>div:last-child{flex:1}.st b{font-size:1.4rem}
+.mn{display:flex;align-items:center;gap:12px;width:100%;padding:14px 16px;margin-bottom:10px;text-align:left;color:var(--tx)}.mn span{flex:1}
+.up{border-style:dashed}
+.pv{display:block;width:100%;max-height:260px;object-fit:contain;border-radius:14px;margin-top:10px}
+nav{position:fixed;left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));max-width:456px;margin:0 auto;display:flex;padding:6px;border-radius:28px;background:var(--g);border:1px solid var(--gb);box-shadow:0 10px 30px var(--sh),inset 0 1px 0 var(--gb)}
+nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 0;border:0;border-radius:22px;background:none;font-size:.68rem;color:var(--mut)}
+nav .on{background:var(--gb);color:var(--tx);font-weight:600}
+.ov{position:fixed;inset:0;z-index:20;background:rgba(0,0,0,.45);display:flex;align-items:flex-end;animation:in .2s}
+.sh{width:100%;max-width:480px;margin:0 auto;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px));border-radius:26px 26px 0 0;background:var(--b2);border:1px solid var(--gb);max-height:88vh;overflow-y:auto}
+input,select{width:100%;margin:10px 0 0;padding:12px;border-radius:14px;border:1px solid var(--gb);background:var(--g);color:var(--tx);font:inherit}
+input::placeholder{color:var(--mut)}
+</style>
+</head>
+<body>
+<main id="v"></main>
+<input id="fi" type="file" multiple hidden>
+<input id="fc" type="file" accept="image/*" capture="environment" hidden>
+<nav id="nav"></nav>
+<script>
+(function(){
+var K="tb-ipa-v1",S=null;
+try{S=JSON.parse(localStorage.getItem(K))}catch(e){}
+S=S||{};S.tasks=S.tasks||[];S.sess=S.sess||{};S.stat=S.stat||{n:0,ok:0};S.pm=S.pm||{};
+var save=function(){try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}};
+var $=function(s){return document.querySelector(s)},pad=function(n){return String(n).padStart(2,"0")};
+var esc=function(t){return String(t).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})};
+var ymd=function(d){return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())};
+var MON=["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"];
+var MONF=["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+var fmt=function(s){var p=s.split("-");return +p[2]+" "+MON[+p[1]-1]+" "+p[0]};
+var today=ymd(new Date()),TAB="beranda",SEL=today,CM=new Date(),F="semua",SH=false,QM="Fisika",Q=null;CM.setDate(1);
+var MAP=["Fisika","Kimia","Biologi","Matematika"],COL=["#60a5fa","#34d399","#fbbf24","#a78bfa","#f9a8d4"];
+var col=function(m){var i=MAP.indexOf(m);return COL[i<0?4:i]};
+var IC={home:'<path d="M3 11l9-8 9 8M5 10v10h5v-6h4v6h5V10"/>',cal:'<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/>',rocket:'<path d="M12 3c3 2 5 5 5 9l-2 3H9l-2-3c0-4 2-7 5-9zM9 15l-2 4 3-1M15 15l2 4-3-1"/><circle cx="12" cy="10" r="1.5"/>',folder:'<path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',more:'<circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/>',timer:'<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/>',chart:'<path d="M5 20V10M12 20V4M19 20v-7"/>',plus:'<path d="M12 5v14M5 12h14"/>',play:'<path d="M8 5v14l11-7z" fill="currentColor"/>',pause:'<path d="M8 5v14M16 5v14" stroke-width="3.5"/>',go:'<path d="M9 6l6 6-6 6"/>',clip:'<path d="M21 11l-9 9a5 5 0 0 1-7-7l9-9a3.5 3.5 0 0 1 5 5l-9 9a2 2 0 0 1-3-3l8-8"/>'};
+var I=function(n){return '<svg class="i" viewBox="0 0 24 24">'+IC[n]+'</svg>'};
+var NAV=[["beranda","home","Beranda"],["kal","cal","Kalender"],["latih","rocket","Latihan"],["tugas","folder","Tugas"],["lain","more","Lainnya"]];
+$("#nav").innerHTML=NAV.map(function(n){return '<button data-act="tab" data-tab="'+n[0]+'">'+I(n[1])+'<span>'+n[2]+'</span></button>'}).join("");
+var head=function(t,ic,r){return '<div class="hd"><div class="tt">'+I(ic)+'<h1>'+t+'</h1></div>'+(r||"")+'</div>'};
+var addb='<button class="rb2" data-act="sheet" aria-label="Tambah tugas">'+I("plus")+'</button>';
+
+var B={
+Fisika:[
+["Mobil bergerak dengan kecepatan tetap 20 m/s selama 5 detik. Berapa jarak tempuhnya?",["4 m","25 m","100 m","250 m"],2,"s = v × t = 20 × 5 = 100 m."],
+["Benda bermassa 2 kg dipercepat 3 m/s^2. Berapa gaya yang bekerja?",["1,5 N","5 N","6 N","9 N"],2,"F = m × a = 2 × 3 = 6 N."],
+["Satuan SI untuk usaha atau energi adalah ...",["Newton","Joule","Watt","Pascal"],1,"Usaha dan energi diukur dalam joule (J). Newton untuk gaya, watt untuk daya, pascal untuk tekanan."],
+["Benda jatuh bebas dari diam dengan g = 10 m/s^2. Berapa kecepatannya setelah 3 detik?",["13 m/s","30 m/s","45 m/s","90 m/s"],1,"v = g × t = 10 × 3 = 30 m/s."]],
+Kimia:[
+["Lambang unsur natrium adalah ...",["N","Na","Ng","Nt"],1,"Natrium berasal dari kata Latin natrium, lambangnya Na."],
+["Jika Ar H = 1 dan Ar O = 16, berapa Mr H2O?",["17","18","19","34"],1,"Mr = 2 × 1 + 16 = 18."],
+["Larutan dengan [H+] = 10^-3 M memiliki pH ...",["1","3","7","11"],1,"pH = -log [H+] = -log 10^-3 = 3."],
+["Jumlah elektron valensi unsur golongan VIIA adalah ...",["1","5","7","8"],2,"Golongan VIIA (halogen) memiliki 7 elektron valensi."]],
+Biologi:[
+["Organel sel yang berfungsi menghasilkan energi (ATP) adalah ...",["Ribosom","Mitokondria","Lisosom","Badan Golgi"],1,"Respirasi sel berlangsung di mitokondria, sehingga disebut pembangkit energi sel."],
+["Selain glukosa, fotosintesis menghasilkan ...",["Karbon dioksida","Oksigen","Nitrogen","Metana"],1,"6CO2 + 6H2O → C6H12O6 + 6O2, jadi hasil lainnya adalah oksigen."],
+["Molekul pembawa informasi genetik adalah ...",["DNA","Lemak","Selulosa","Glukosa"],0,"DNA menyimpan informasi genetik dalam bentuk urutan basa nitrogen."],
+["Sel darah yang mengangkut oksigen adalah ...",["Leukosit","Eritrosit","Trombosit","Plasma"],1,"Eritrosit mengandung hemoglobin yang mengikat oksigen."]],
+Matematika:[
+["Turunan dari f(x) = 3x^2 + 2x adalah ...",["3x + 2","6x + 2","6x^2 + 2","6x"],1,"Turunkan tiap suku: 3x^2 menjadi 6x, 2x menjadi 2."],
+["Jika 2x + 5 = 17, maka x = ...",["5","6","7","11"],1,"2x = 17 - 5 = 12, sehingga x = 6."],
+["Nilai sin 30° adalah ...",["0","1/2","(akar 3)/2","1"],1,"sin 30° = 1/2."],
+["Suku ke-10 barisan aritmetika dengan a = 3 dan b = 4 adalah ...",["36","39","43","47"],1,"Un = a + (n-1)b = 3 + 9 × 4 = 39."]]};
+var nq=function(m){return m=="Campur"?MAP.reduce(function(a,k){return a+B[k].length},0):B[m].length};
+var build=function(m){return (m=="Campur"?MAP:[m]).reduce(function(a,k){return a.concat(B[k].map(function(x){return x.concat(k)}))},[])};
+
+/* Pomodoro */
+var P={m:"f",d:25,left:1500,end:0,run:false};
+var dur=function(){return P.m=="f"?P.d*60:300};
+var ptxt=function(){var s=Math.max(0,Math.ceil(P.run?(P.end-Date.now())/1000:P.left));return pad(s/60|0)+":"+pad(s%60)};
+var poff=function(){var r=P.run?(P.end-Date.now())/1000:P.left;return 565.5*(1-Math.max(0,Math.min(1,r/dur())))};
+function beep(){try{var a=new (window.AudioContext||window.webkitAudioContext)(),o=a.createOscillator();o.connect(a.destination);o.frequency.value=880;o.start();setTimeout(function(){o.stop()},700)}catch(e){}try{navigator.vibrate&&navigator.vibrate([300,150,300])}catch(e){}}
+function finish(){P.run=false;if(P.m=="f"){S.sess[today]=(S.sess[today]||0)+1;save()}beep();P.m=P.m=="f"?"b":"f";P.left=dur();if(TAB=="pomo")render()}
+setInterval(function(){if(!P.run)return;if(P.end-Date.now()<=0){finish();return}var e=$("#pt");if(e){e.textContent=ptxt();var r=$("#pr");if(r)r.style.strokeDashoffset=poff()}},250);
+
+/* Berkas (IndexedDB, tersimpan offline) */
+var FL=[],FQ="",FM="Semua",PF=[],OPEN=null,URLS={},idb=null;
+function dbo(){return new Promise(function(res,rej){if(idb)return res(idb);var r=indexedDB.open("ambite-files",1);r.onupgradeneeded=function(){r.result.createObjectStore("f",{keyPath:"id"})};r.onsuccess=function(){idb=r.result;res(idb)};r.onerror=function(){rej(r.error)}})}
+function dbx(mode,fn){return dbo().then(function(d){return new Promise(function(res,rej){var tx=d.transaction("f",mode),rq=fn(tx.objectStore("f"));tx.oncomplete=function(){res(rq&&rq.result)};tx.onerror=function(){rej(tx.error)}})})}
+function loadFiles(){dbx("readonly",function(s){return s.getAll()}).then(function(a){FL=a||[];if(TAB=="berkas"||TAB=="tugas")render()}).catch(function(){})}
+var url=function(f){return URLS[f.id]||(URLS[f.id]=URL.createObjectURL(f.blob))};
+var isImg=function(f){return /^image\//.test(f.type)};
+var sz=function(n){return n>1048576?(n/1048576).toFixed(1)+" MB":Math.max(1,Math.round(n/1024))+" KB"};
+var fcnt=function(id){var n=FL.filter(function(f){return f.taskId==id}).length;return n?' · '+n+' berkas':''};
+var subtabs=function(w){return '<div class="seg"><button data-act="tab" data-tab="tugas" class="'+(w=="tugas"?"on":"")+'">Daftar</button><button data-act="tab" data-tab="berkas" class="'+(w=="berkas"?"on":"")+'">Berkas</button></div>'};
+function flist(){
+var q=FQ.toLowerCase(),a=FL.filter(function(f){return (FM=="Semua"||f.m==FM)&&(!q||f.name.toLowerCase().indexOf(q)>=0)}).sort(function(x,y){return y.at-x.at});
+return a.length?a.map(function(f){var tg=S.tasks.filter(function(t){return t.id==f.taskId})[0];
+return '<button class="g tk fr" data-act="fo" data-id="'+f.id+'">'+(isImg(f)?'<img class="th" src="'+url(f)+'" alt="">':'<div class="ti">'+esc((f.name.split(".").pop()||"file").slice(0,4).toUpperCase())+'</div>')+'<div class="tx"><b>'+esc(f.name)+'</b><small>'+esc(f.m)+' · '+sz(f.size)+' · '+fmt(ymd(new Date(f.at)))+(tg?' · '+esc(tg.title):'')+'</small></div></button>'}).join(""):'<div class="g c1 mut c">'+(FL.length?'Tidak ada berkas yang cocok.':'Belum ada berkas. Unggah tugasmu di atas.')+'</div>'}
+function vBerkas(){var tot=FL.reduce(function(a,f){return a+f.size},0);
+return head("Berkas","clip")+subtabs("berkas")
++'<div class="g c1 up"><b>Unggah Tugas</b><small>PDF, gambar, atau file lain. Tersimpan offline di perangkat ini.</small><div class="row2"><label class="cta" for="fi">Pilih File</label><label class="cta alt" for="fc">Ambil Foto</label></div></div>'
++'<input id="fs" type="search" placeholder="Cari nama berkas…" value="'+esc(FQ)+'" style="margin:0 0 12px">'
++'<div class="chips">'+["Semua"].concat(MAP,["Lainnya"]).map(function(m){return '<button data-act="fm" data-m="'+m+'" class="'+(FM==m?"on":"")+'">'+m+'</button>'}).join("")+'</div>'
++'<div id="fl">'+flist()+'</div><p class="mut c">'+FL.length+' berkas · '+sz(tot)+'</p>'}
+function fsheet(){return '<div class="ov" data-act="close"><div class="sh" data-act="noop"><b>Simpan '+PF.length+' berkas</b><small>'+PF.map(function(f){return esc(f.name)}).join(", ")+'</small><select id="fm2">'+MAP.concat(["Lainnya"]).map(function(m){return '<option'+(m==FM?' selected':'')+'>'+m+'</option>'}).join("")+'</select><select id="ft"><option value="">Tanpa tugas terkait</option>'+S.tasks.filter(function(t){return !t.done}).map(function(t){return '<option value="'+t.id+'">'+esc(t.title)+'</option>'}).join("")+'</select><button class="cta" data-act="fsave">Simpan</button></div></div>'}
+function osheet(){var f=FL.filter(function(x){return x.id==OPEN})[0];if(!f)return "";
+return '<div class="ov" data-act="close"><div class="sh" data-act="noop"><b>'+esc(f.name)+'</b><small>'+esc(f.m)+' · '+sz(f.size)+'</small>'+(isImg(f)?'<img class="pv" src="'+url(f)+'" alt="">':'')+'<div class="row2"><a class="cta" href="'+url(f)+'" target="_blank" rel="noopener">Buka</a><a class="cta alt" href="'+url(f)+'" download="'+esc(f.name)+'">Unduh</a></div>'+(navigator.canShare?'<button class="cta alt" data-act="fsh">Bagikan</button>':'')+'<button class="cta alt" data-act="fdel">Hapus berkas</button></div></div>'}
+function sheet(){return SH=="file"?fsheet():SH=="open"?osheet():tsheet()}
+function pick(e){var fs=[].slice.call(e.target.files);e.target.value="";if(!fs.length)return;PF=fs;SH="file";render()}
+$("#fi").addEventListener("change",pick);$("#fc").addEventListener("change",pick);
+document.addEventListener("input",function(e){if(e.target.id=="fs"){FQ=e.target.value;$("#fl").innerHTML=flist()}});
+function applyTheme(){var t=S.theme||"auto",r=document.documentElement;if(t=="auto")r.removeAttribute("data-theme");else r.setAttribute("data-theme",t)}
+
+/* Tampilan */
+function vBeranda(){
+var g=(function(h){return h<11?"pagi":h<15?"siang":h<18?"sore":"malam"})(new Date().getHours());
+var tt=S.tasks.filter(function(t){return t.date==today}),dn=tt.filter(function(t){return t.done}).length,pc=tt.length?Math.round(dn*100/tt.length):0,lm=S.last||"Fisika";
+return head("Ambite","rocket")+'<p class="gr">Selamat '+g+',<br><b>Pelajar!</b> 👋</p><p class="mut">Terus belajar, raih masa depan yang lebih baik.</p>'
++'<div class="g c1"><div class="row"><b>Target Hari Ini</b><span>'+dn+' / '+tt.length+' tugas</span></div><div class="bar"><i style="width:'+pc+'%"></i></div><small>'+pc+'%</small></div>'
++'<div class="sc">'+[["cal","Kalender","kal"],["timer","Pomodoro","pomo"],["folder","Tugas","tugas"],["clip","Berkas","berkas"],["rocket","Latihan","latih"]].map(function(x){return '<button class="g" data-act="tab" data-tab="'+x[2]+'">'+I(x[0])+'<span>'+x[1]+'</span></button>'}).join("")+'</div>'
++'<h3>Lanjutkan Belajar</h3><div class="g c1 row"><div><b>'+lm+'</b><small>'+B[lm].length+' soal latihan</small></div><button class="play" data-act="qm" data-m="'+lm+'" aria-label="Mulai">'+I("play")+'</button></div>'}
+
+function vKal(){
+var y=CM.getFullYear(),m=CM.getMonth(),off=(new Date(y,m,1).getDay()+6)%7,n=new Date(y,m+1,0).getDate(),has={};
+S.tasks.forEach(function(t){if(t.date&&!t.done)has[t.date]=1});
+var c=["Sen","Sel","Rab","Kam","Jum","Sab","Min"].map(function(d){return '<b>'+d+'</b>'}).join("");
+for(var i=0;i<off;i++)c+='<span></span>';
+for(var d=1;d<=n;d++){var k=y+"-"+pad(m+1)+"-"+pad(d);c+='<button class="d'+(k==today?' t':'')+(k==SEL?' s':'')+(has[k]?' h':'')+'" data-act="pick" data-d="'+k+'">'+d+'</button>'}
+var a=S.tasks.filter(function(t){return t.date==SEL});
+return head("Kalender","cal",addb)+'<div class="g c1"><div class="row"><button class="nv" data-act="mp">‹</button><b>'+MONF[m]+' '+y+'</b><button class="nv" data-act="mn">›</button></div><div class="cal">'+c+'</div></div>'
++'<div class="g c1"><b>Agenda '+(SEL==today?"Hari Ini":fmt(SEL))+'</b>'+(a.length?a.map(function(t){return '<div class="ag"><i></i><span class="'+(t.done?'dn':'')+'">'+esc(t.m)+' – '+esc(t.title)+'</span><small>'+(t.done?"Selesai":"Aktif")+'</small></div>'}).join(""):'<p class="mut">Tidak ada agenda.</p>')+'</div>'}
+
+function tk(t){var od=!t.done&&t.date&&t.date<today;
+return '<div class="g tk"><div class="ti">'+esc(t.m[0])+'</div><div class="tx"><b class="'+(t.done?'dn':'')+'">'+esc(t.title)+'</b><small>'+(t.date?'Deadline: '+fmt(t.date):'Tanpa tanggal')+fcnt(t.id)+'</small></div><button class="pill'+(t.done?' ok':'')+(od?' od':'')+'" data-act="tog" data-id="'+t.id+'">'+(t.done?'Selesai':od?'Terlewat':'Aktif')+'</button><button class="xx" data-act="del" data-id="'+t.id+'" aria-label="Hapus">×</button></div>'}
+function vTugas(){
+var a=S.tasks.filter(function(t){return F=="semua"||(F=="aktif"?!t.done:t.done)}).sort(function(x,y){return (x.done-y.done)||((x.date||"9")>(y.date||"9")?1:-1)});
+return head("Tugas","folder",addb)+subtabs("tugas")+'<div class="seg">'+[["semua","Semua"],["aktif","Aktif"],["selesai","Selesai"]].map(function(x){return '<button data-act="flt" data-f="'+x[0]+'" class="'+(F==x[0]?"on":"")+'">'+x[1]+'</button>'}).join("")+'</div>'+(a.length?a.map(tk).join(""):'<div class="g c1 mut c">Belum ada tugas. Ketuk + untuk menambah.</div>')}
+
+function vPomo(){var n=S.sess[today]||0;
+return head("Pomodoro","timer")+'<div class="ringw"><svg viewBox="0 0 200 200"><defs><linearGradient id="gr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#c4b5fd"/></linearGradient></defs><circle class="rb" cx="100" cy="100" r="90"/><circle class="rf" id="pr" cx="100" cy="100" r="90" style="stroke-dashoffset:'+poff()+'"/></svg><div class="ctr"><div class="big" id="pt">'+ptxt()+'</div><small>'+(P.m=="f"?"Fokus Sekarang!":"Waktunya Istirahat")+'</small></div></div>'
++'<button class="play big2" data-act="pgo" aria-label="Mulai atau jeda">'+I(P.run?"pause":"play")+'</button>'
++'<div class="seg">'+[25,50,90].map(function(m){return '<button data-act="pd" data-n="'+m+'" class="'+(P.m=="f"&&P.d==m?"on":"")+'">'+m+' min</button>'}).join("")+'</div>'
++'<div class="g c1"><div class="row"><b>Sesi Hari Ini</b><span>'+n+' / 4</span></div><div class="bar"><i style="width:'+Math.min(100,n*25)+'%"></i></div></div><div class="g c1 qt">✨ “Sedikit demi sedikit, lama-lama jadi bukit.”</div>'}
+
+function vLatih(){
+if(!Q)return head("Latihan","rocket")+'<div class="chips">'+MAP.concat(["Campur"]).map(function(m){return '<button data-act="qc" data-m="'+m+'" class="'+(QM==m?"on":"")+'">'+m+'</button>'}).join("")+'</div><div class="g c1"><b>'+(QM=="Campur"?"Campur semua mapel":QM)+'</b><small>'+nq(QM)+' soal · pembahasan muncul setelah menjawab</small></div><button class="cta" data-act="qm" data-m="'+QM+'">Mulai Latihan →</button>';
+if(Q.i>=Q.l.length)return head("Selesai","rocket")+'<div class="g c1 c"><div class="big">'+Q.s+'/'+Q.l.length+'</div><p class="mut">Skor latihan '+Q.m+'.</p></div><button class="cta" data-act="qm" data-m="'+Q.m+'">Ulangi</button><button class="cta" data-act="qx" style="background:var(--g)">Pilih mapel lain</button>';
+var q=Q.l[Q.i];
+return head(Q.m+' · '+(Q.i+1)+'/'+Q.l.length,"rocket")+'<div class="g c1"><p>'+esc(q[0])+'</p>'+q[1].map(function(t,j){var c="";if(Q.sel!=null){if(j==q[2])c=" ok";else if(j==Q.sel)c=" no"}return '<button class="opt'+c+'" data-act="qa" data-i="'+j+'">'+String.fromCharCode(65+j)+'. '+esc(t)+'</button>'}).join("")+(Q.sel!=null?'<p class="mut">Pembahasan: '+esc(q[3])+'</p>':'')+'</div>'+(Q.sel!=null?'<button class="cta" data-act="qn">'+(Q.i+1<Q.l.length?"Soal berikutnya":"Lihat skor")+'</button>':'')}
+
+function vAnalisis(){
+var n=S.stat.n,ok=S.stat.ok,pc=n?Math.round(ok*100/n):0,C=326.7,ss=Object.keys(S.sess).reduce(function(a,k){return a+S.sess[k]},0),td=S.tasks.filter(function(t){return t.done}).length;
+var rows=MAP.map(function(m){var x=S.pm[m]||{n:0,ok:0},p=x.n?Math.round(x.ok*100/x.n):0;return '<div class="pr"><span>'+m+'</span><div class="bar"><i style="width:'+p+'%"></i></div><b>'+(x.n?p+'%':'–')+'</b></div>'}).join("");
+var wk=MAP.filter(function(m){return S.pm[m]&&S.pm[m].n}).sort(function(a,b){return S.pm[a].ok/S.pm[a].n-S.pm[b].ok/S.pm[b].n})[0];
+return head("Analisis","chart")+'<div class="g c1 st"><div class="ringw" style="width:120px;height:120px;margin:0"><svg viewBox="0 0 120 120"><circle class="rb" cx="60" cy="60" r="52" style="stroke-width:10"/><circle class="rf" cx="60" cy="60" r="52" style="stroke-width:10;stroke-dasharray:'+C+';stroke-dashoffset:'+C*(1-pc/100)+'"/></svg><div class="ctr"><b>'+pc+'%</b><small>Akurasi</small></div></div><div><b>'+n+'</b><small>Soal dikerjakan</small><b>'+ss+'</b><small>Sesi fokus</small><b>'+td+'</b><small>Tugas selesai</small></div></div>'
++'<div class="g c1"><b>Performa Mata Pelajaran</b>'+rows+'</div><div class="g c1">💡 '+(wk?'Topik untuk dipelajari lagi: <b>'+wk+'</b> (akurasi terendah)':'Kerjakan beberapa soal latihan dulu untuk melihat analisis.')+'</div>'}
+
+function vLain(){
+return head("Lainnya","more")+'<h3>Tema</h3><div class="seg">'+[["auto","Otomatis"],["dark","Gelap"],["light","Terang"]].map(function(x){return '<button data-act="th" data-t="'+x[0]+'" class="'+((S.theme||"auto")==x[0]?"on":"")+'">'+x[1]+'</button>'}).join("")+'</div>'+[["pomo","timer","Pomodoro"],["analisis","chart","Analisis"]].map(function(x){return '<button class="g mn" data-act="tab" data-tab="'+x[0]+'">'+I(x[1])+'<span>'+x[2]+'</span>'+I("go")+'</button>'}).join("")+'<button class="g mn" data-act="wipe"><span>Hapus semua data</span></button><p class="mut c">Semua data tersimpan di perangkat ini dan bisa dipakai tanpa internet.</p>'}
+
+function tsheet(){return '<div class="ov" data-act="close"><div class="sh" data-act="noop"><b>Tugas Baru</b><input id="tt" placeholder="Judul tugas, mis. LKS Fisika bab 3"><input id="td" type="date" value="'+(TAB=="kal"?SEL:today)+'"><select id="tm">'+MAP.concat(["Lainnya"]).map(function(m){return '<option>'+m+'</option>'}).join("")+'</select><button class="cta" data-act="add">Simpan</button></div></div>'}
+
+function render(){
+var v={berkas:vBerkas,beranda:vBeranda,kal:vKal,pomo:vPomo,tugas:vTugas,latih:vLatih,analisis:vAnalisis,lain:vLain}[TAB];
+$("#v").innerHTML=v()+(SH?sheet():"");
+var nt=(TAB=="pomo"||TAB=="analisis")?"lain":TAB=="berkas"?"tugas":TAB;
+document.querySelectorAll("#nav button").forEach(function(b){b.classList.toggle("on",b.dataset.tab==nt)})}
+
+document.addEventListener("click",function(e){
+var b=e.target.closest("[data-act]");if(!b)return;var a=b.dataset.act,D=b.dataset;
+if(a=="noop")return;
+if(a=="tab"){TAB=D.tab;SH=false;window.scrollTo(0,0)}
+else if(a=="sheet"){SH=true}
+else if(a=="close"){SH=false}
+else if(a=="add"){var t=$("#tt").value.trim();if(!t)return;var d=$("#td").value;S.tasks.push({id:Date.now(),title:t,date:d,m:$("#tm").value,done:false});if(d)SEL=d;SH=false;save()}
+else if(a=="tog"){S.tasks.forEach(function(t){if(t.id==D.id)t.done=!t.done});save()}
+else if(a=="del"){S.tasks=S.tasks.filter(function(t){return t.id!=D.id});save()}
+else if(a=="flt"){F=D.f}
+else if(a=="pick"){SEL=D.d}
+else if(a=="mp"){CM.setMonth(CM.getMonth()-1)}
+else if(a=="mn"){CM.setMonth(CM.getMonth()+1)}
+else if(a=="pd"){P.run=false;P.m="f";P.d=+D.n;P.left=dur()}
+else if(a=="pgo"){if(P.run){P.left=Math.max(1,Math.ceil((P.end-Date.now())/1000));P.run=false}else{P.end=Date.now()+P.left*1000;P.run=true}}
+else if(a=="qc"){QM=D.m}
+else if(a=="qm"){QM=D.m;TAB="latih";if(D.m!="Campur")S.last=D.m;Q={m:D.m,l:build(D.m).sort(function(){return Math.random()-.5}),i:0,s:0,sel:null};save();window.scrollTo(0,0)}
+else if(a=="qa"){if(Q.sel!=null)return;Q.sel=+D.i;var q=Q.l[Q.i],okk=Q.sel==q[2];S.stat.n++;S.pm[q[4]]=S.pm[q[4]]||{n:0,ok:0};S.pm[q[4]].n++;if(okk){Q.s++;S.stat.ok++;S.pm[q[4]].ok++}save()}
+else if(a=="qn"){Q.i++;Q.sel=null}
+else if(a=="qx"){Q=null}
+else if(a=="fm"){FM=D.m}
+else if(a=="fo"){OPEN=D.id;SH="open"}
+else if(a=="th"){S.theme=D.t;applyTheme();save()}
+else if(a=="fsave"){var m2=$("#fm2").value,tid=$("#ft").value,fs=PF;PF=[];SH=false;
+if(navigator.storage&&navigator.storage.persist)navigator.storage.persist();
+Promise.all(fs.map(function(f,i){var r={id:Date.now()+i,name:f.name,type:f.type||"",size:f.size,m:m2,taskId:tid?+tid:null,at:Date.now(),blob:f};return dbx("readwrite",function(st){return st.put(r)}).then(function(){FL.push(r)})})).then(render).catch(function(){alert("Gagal menyimpan berkas. Penyimpanan mungkin penuh.")})}
+else if(a=="fdel"){if(!confirm("Hapus berkas ini?"))return;var id0=OPEN;dbx("readwrite",function(st){return st["delete"](+id0)});FL=FL.filter(function(f){return f.id!=id0});SH=false}
+else if(a=="fsh"){var ff=FL.filter(function(x){return x.id==OPEN})[0];if(ff)navigator.share({files:[new File([ff.blob],ff.name,{type:ff.type})],title:ff.name}).catch(function(){})}
+else if(a=="wipe"){if(!confirm("Hapus semua tugas dan statistik?"))return;S={tasks:[],sess:{},stat:{n:0,ok:0},pm:{}};save();dbx("readwrite",function(st){return st.clear()});FL=[];URLS={};applyTheme()}
+render()});
+if("serviceWorker"in navigator&&/^https?:/.test(location.protocol)){navigator.serviceWorker.register("sw.js").catch(function(){})}
+applyTheme();loadFiles();render();
+})();
+</script>
+</body>
+</html>
